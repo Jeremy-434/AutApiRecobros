@@ -1,4 +1,5 @@
 using AutApiRecobros.Models;
+using AutApiRecobros.Repository;
 using AutApiRecobros.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +12,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ServiciosRepository>();
 builder.Services.AddScoped<ServiciosService>();
 builder.Services.AddDbContext<MyDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL")));
+
+var misReglasCors = "ReglasCors";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: misReglasCors, builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -23,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(misReglasCors);
 
 app.UseAuthorization();
 

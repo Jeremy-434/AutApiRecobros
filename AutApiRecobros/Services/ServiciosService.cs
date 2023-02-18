@@ -1,34 +1,61 @@
 ﻿using AutApiRecobros.Models;
+using AutApiRecobros.Repository;
+
+using AutApiRecobros.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutApiRecobros.Services
 {
 
-    public class ServiciosService
+    public class ServiciosService : IServiciosService
     {
-        public readonly MyDbContext dbContext;
+        public readonly ServiciosRepository _repository;
 
-        public ServiciosService(MyDbContext dbContext)
+        public ServiciosService(ServiciosRepository repository)
         {
-            this.dbContext = dbContext;
+            this._repository = repository;
         }
 
-        public List<Servicios>? Listar()
+        public async Task<Servicios> GetServicioById(int id)
         {
-            try
+            return await _repository.GetServicioById(id);
+        }
+        public async Task<IEnumerable<Servicios>> GetAllServicios()
+        {
+            return await _repository.GetAllServicios();
+        }
+        public async Task<Servicios> CreateServicio(Servicios servicio)
+        {
+            return await _repository.CreateServicio(servicio);
+        }
+        public async Task<Servicios> UpdateServicio(Servicios servicio)
+        {
+            var existingServicio = await _repository.GetServicioById(servicio.IdServicio);
+            if (existingServicio == null)
             {
-                //List<Servicios> services = new();
-                //services = dbContext.Servicios.ToList();
-                List<Servicios> services = dbContext.Servicios.ToList();
-
-                return services;
+                throw new ArgumentException("Servicio not found");
             }
-            catch (Exception ex)
+
+            existingServicio.NombreServicio = servicio.NombreServicio ?? existingServicio.NombreServicio;
+            existingServicio.Descripcion = servicio.Descripcion ?? existingServicio.Descripcion;
+            existingServicio.Driver = servicio.Driver ?? existingServicio.Driver;
+            existingServicio.ResponsableReporte = servicio.ResponsableReporte ?? existingServicio.ResponsableReporte;
+            existingServicio.ClaseActividad = servicio.ClaseActividad ?? existingServicio.ClaseActividad;
+            existingServicio.ClaseCosto = servicio.ClaseCosto ?? existingServicio.ClaseCosto;
+            existingServicio.LiderServicio = servicio.LiderServicio ?? existingServicio.LiderServicio;
+            existingServicio.PorcentajeComparacion = servicio.PorcentajeComparacion ?? existingServicio.PorcentajeComparacion;
+
+            var updatedServicio = await _repository.UpdateServicio(existingServicio);
+
+            return updatedServicio;
+        }
+        public async Task DeleteServicio(int id)
+        {
+            var servicio = await _repository.GetServicioById(id);
+            if (servicio != null)
             {
-                Console.WriteLine(ex.ToString());
-                return null;
+                await _repository.DeleteServicio(servicio);
             }
-
         }
     }
 }
