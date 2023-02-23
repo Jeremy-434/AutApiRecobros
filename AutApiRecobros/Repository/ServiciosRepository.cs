@@ -16,8 +16,7 @@ namespace AutApiRecobros.Repository
 
         public async Task<Servicios> GetServicioById(int id)
         {
-            Servicios servicio = await _context.Servicios.FindAsync(id);
-            return servicio;
+            return await _context.Servicios.FindAsync(id);
         }
         public async Task<IEnumerable<Servicios>> GetAllServicios()
         {
