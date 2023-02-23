@@ -6,16 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutApiRecobros.Models;
 
-public partial class Aliado
+public partial class Aliados
 {
     [Key]
     [Column("id_aliado")]
     public int IdAliado { get; set; }
 
     [Column("nombre_aliado")]
-    [StringLength(50)]
+    [StringLength(100)]
     [Unicode(false)]
-    public string? NombreAliado { get; set; }
+    public string NombreAliado { get; set; } = null!;
 
     [Column("usuario")]
     [StringLength(30)]
@@ -23,12 +23,17 @@ public partial class Aliado
     public string? Usuario { get; set; }
 
     [Column("estado")]
-    [StringLength(30)]
+    [StringLength(50)]
     [Unicode(false)]
     public string? Estado { get; set; }
 
-    [Column("fecha")]
-    public int? Fecha { get; set; }
+    [Column("correo_responsable")]
+    [StringLength(200)]
+    [Unicode(false)]
+    public string CorreoResponsable { get; set; } = null!;
+
+    [Column("fecha", TypeName = "datetime")]
+    public DateTime? Fecha { get; set; }
 
     [InverseProperty("IdAliadoNavigation")]
     public virtual ICollection<Aplicaciones> Aplicaciones { get; } = new List<Aplicaciones>();

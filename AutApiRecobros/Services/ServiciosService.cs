@@ -42,7 +42,6 @@ namespace AutApiRecobros.Services
             existingServicio.ResponsableReporte = servicio.ResponsableReporte ?? existingServicio.ResponsableReporte;
             existingServicio.ClaseActividad = servicio.ClaseActividad ?? existingServicio.ClaseActividad;
             existingServicio.ClaseCosto = servicio.ClaseCosto ?? existingServicio.ClaseCosto;
-            existingServicio.LiderServicio = servicio.LiderServicio ?? existingServicio.LiderServicio;
             existingServicio.PorcentajeComparacion = servicio.PorcentajeComparacion ?? existingServicio.PorcentajeComparacion;
 
             var updatedServicio = await _repository.UpdateServicio(existingServicio);

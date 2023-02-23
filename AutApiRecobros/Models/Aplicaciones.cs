@@ -12,20 +12,20 @@ public partial class Aplicaciones
     [Column("id_aplicacion")]
     public int IdAplicacion { get; set; }
 
-    [Column("nombre_de_aplicación")]
-    [StringLength(70)]
+    [Column("nombre_aplicacion")]
+    [StringLength(80)]
     [Unicode(false)]
-    public string? NombreDeAplicación { get; set; }
+    public string NombreAplicacion { get; set; } = null!;
 
-    [Column("estado_de_aplicación")]
-    [StringLength(30)]
+    [Column("estado")]
+    [StringLength(50)]
     [Unicode(false)]
-    public string? EstadoDeAplicación { get; set; }
+    public string? Estado { get; set; }
 
-    [Column("nombre_de_segmento")]
-    [StringLength(30)]
+    [Column("nombre_segmento")]
+    [StringLength(50)]
     [Unicode(false)]
-    public string? NombreDeSegmento { get; set; }
+    public string? NombreSegmento { get; set; }
 
     [Column("id_servicio")]
     public int IdServicio { get; set; }
@@ -38,7 +38,7 @@ public partial class Aplicaciones
 
     [ForeignKey("IdAliado")]
     [InverseProperty("Aplicaciones")]
-    public virtual Aliado IdAliadoNavigation { get; set; } = null!;
+    public virtual Aliados IdAliadoNavigation { get; set; } = null!;
 
     [ForeignKey("IdServicio")]
     [InverseProperty("Aplicaciones")]

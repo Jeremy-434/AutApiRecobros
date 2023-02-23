@@ -6,24 +6,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutApiRecobros.Models;
 
-public partial class CentroCosto
+public partial class CentroCostos
 {
     [Key]
     [Column("id_centro_costo")]
     public int IdCentroCosto { get; set; }
 
     [Column("login_user")]
-    [StringLength(30)]
+    [StringLength(50)]
     [Unicode(false)]
-    public string? LoginUser { get; set; }
+    public string LoginUser { get; set; } = null!;
 
     [Column("nombre_user")]
     [StringLength(100)]
     [Unicode(false)]
-    public string? NombreUser { get; set; }
+    public string NombreUser { get; set; } = null!;
 
     [Column("ceco")]
-    [StringLength(30)]
+    [StringLength(50)]
     [Unicode(false)]
-    public string? Ceco { get; set; }
+    public string Ceco { get; set; } = null!;
 }

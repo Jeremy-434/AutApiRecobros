@@ -14,9 +14,9 @@ public partial class ControlArchivo
     public int IdControlArchivo { get; set; }
 
     [Column("registro")]
-    [StringLength(30)]
+    [StringLength(50)]
     [Unicode(false)]
-    public string? Registro { get; set; }
+    public string Registro { get; set; } = null!;
 
     [Column("usuario")]
     [StringLength(100)]
@@ -24,25 +24,30 @@ public partial class ControlArchivo
     public string? Usuario { get; set; }
 
     [Column("estado")]
-    [StringLength(30)]
+    [StringLength(50)]
     [Unicode(false)]
     public string? Estado { get; set; }
 
     [Column("nombre_archivo")]
-    [StringLength(30)]
+    [StringLength(50)]
     [Unicode(false)]
     public string? NombreArchivo { get; set; }
 
-    [Column("fecha_servicio")]
-    public int? FechaServicio { get; set; }
+    [Column("fecha_servicio", TypeName = "datetime")]
+    public DateTime? FechaServicio { get; set; }
 
     [Column("id_aliado")]
     public int IdAliado { get; set; }
+
+    public int Mes { get; set; }
+
+    [Column("anio")]
+    public int Anio { get; set; }
 
     [InverseProperty("IdControlArchivoNavigation")]
     public virtual ICollection<Consolidado> Consolidados { get; } = new List<Consolidado>();
 
     [ForeignKey("IdAliado")]
     [InverseProperty("ControlArchivos")]
-    public virtual Aliado IdAliadoNavigation { get; set; } = null!;
+    public virtual Aliados IdAliadoNavigation { get; set; } = null!;
 }

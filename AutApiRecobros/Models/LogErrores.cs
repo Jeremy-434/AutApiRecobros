@@ -12,10 +12,8 @@ public partial class LogErrores
     [Column("id_log_error")]
     public int IdLogError { get; set; }
 
-    [Column("fecha_servidor")]
-    [StringLength(30)]
-    [Unicode(false)]
-    public string? FechaServidor { get; set; }
+    [Column("fecha_servidor", TypeName = "datetime")]
+    public DateTime? FechaServidor { get; set; }
 
     [Column("descripcion_error")]
     [StringLength(30)]
@@ -28,10 +26,9 @@ public partial class LogErrores
     [Column("mes")]
     public int? Mes { get; set; }
 
-    [Column("id_consolidado")]
-    public int IdConsolidado { get; set; }
+    [Column("id_aliado")]
+    public int? IdAliado { get; set; }
 
-    [ForeignKey("IdConsolidado")]
-    [InverseProperty("LogErrores")]
-    public virtual Consolidado IdConsolidadoNavigation { get; set; } = null!;
+    [Column("id_consolidado")]
+    public int? IdConsolidado { get; set; }
 }
