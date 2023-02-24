@@ -47,10 +47,10 @@ namespace AutApiRecobros.Controllers
         }
         [HttpDelete]
         [Route("eliminar/{id:int}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var servicio = _service.DeleteServicio(id);
-            return StatusCode(StatusCodes.Status200OK, new { message = "DELETED", response = servicio });
+            Servicios deletedServicio = await _service.DeleteServicio(id);
+            return StatusCode(StatusCodes.Status200OK, new { message = "DELETED", response = deletedServicio });
         }
     }
 }

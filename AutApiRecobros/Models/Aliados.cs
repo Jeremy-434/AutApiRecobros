@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutApiRecobros.Models;
@@ -35,12 +36,15 @@ public partial class Aliados
     [Column("fecha", TypeName = "datetime")]
     public DateTime? Fecha { get; set; }
 
+    [JsonIgnore]
     [InverseProperty("IdAliadoNavigation")]
     public virtual ICollection<Aplicaciones> Aplicaciones { get; } = new List<Aplicaciones>();
 
+    [JsonIgnore]
     [InverseProperty("IdAliadoNavigation")]
     public virtual ICollection<Consolidado> Consolidados { get; } = new List<Consolidado>();
 
+    [JsonIgnore]
     [InverseProperty("IdAliadoNavigation")]
     public virtual ICollection<ControlArchivo> ControlArchivos { get; } = new List<ControlArchivo>();
 }

@@ -8,6 +8,6 @@ namespace AutApiRecobros.Services.Interfaces
         Task<IEnumerable<Servicios>> GetAllServicios();
         Task<Servicios> CreateServicio(Servicios servicio);
         Task<Servicios> UpdateServicio(Servicios servicio);
-        Task DeleteServicio(int id);
+        Task<Servicios> DeleteServicio(int id);
     }
 }

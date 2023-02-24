@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutApiRecobros.Models;
@@ -45,9 +46,16 @@ public partial class Servicios
     [Column("porcentaje_comparacion")]
     public double? PorcentajeComparacion { get; set; }
 
+    [JsonIgnore]
     [InverseProperty("IdServicioNavigation")]
     public virtual ICollection<Aplicaciones> Aplicaciones { get; } = new List<Aplicaciones>();
 
+    [JsonIgnore]
     [InverseProperty("IdServicioNavigation")]
     public virtual ICollection<Consolidado> Consolidados { get; } = new List<Consolidado>();
+
+    public static explicit operator Servicios(Aplicaciones v)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -30,31 +30,31 @@ namespace AutApiRecobros.Services
         }
         public async Task<Servicios> UpdateServicio(Servicios servicio)
         {
-            var existingServicio = await _repository.GetServicioById(servicio.IdServicio);
-            if (existingServicio == null)
+            var oServicio = await _repository.GetServicioById(servicio.IdServicio);
+            if (oServicio == null)
             {
                 throw new ArgumentException("Servicio not found");
             }
 
-            existingServicio.NombreServicio = servicio.NombreServicio ?? existingServicio.NombreServicio;
-            existingServicio.Descripcion = servicio.Descripcion ?? existingServicio.Descripcion;
-            existingServicio.Driver = servicio.Driver ?? existingServicio.Driver;
-            existingServicio.ResponsableReporte = servicio.ResponsableReporte ?? existingServicio.ResponsableReporte;
-            existingServicio.ClaseActividad = servicio.ClaseActividad ?? existingServicio.ClaseActividad;
-            existingServicio.ClaseCosto = servicio.ClaseCosto ?? existingServicio.ClaseCosto;
-            existingServicio.PorcentajeComparacion = servicio.PorcentajeComparacion ?? existingServicio.PorcentajeComparacion;
+            oServicio.NombreServicio = servicio.NombreServicio ?? oServicio.NombreServicio;
+            oServicio.Descripcion = servicio.Descripcion ?? oServicio.Descripcion;
+            oServicio.Driver = servicio.Driver ?? oServicio.Driver;
+            oServicio.ResponsableReporte = servicio.ResponsableReporte ?? oServicio.ResponsableReporte;
+            oServicio.ClaseActividad = servicio.ClaseActividad ?? oServicio.ClaseActividad;
+            oServicio.ClaseCosto = servicio.ClaseCosto ?? oServicio.ClaseCosto;
+            oServicio.PorcentajeComparacion = servicio.PorcentajeComparacion ?? oServicio.PorcentajeComparacion;
 
-            var updatedServicio = await _repository.UpdateServicio(existingServicio);
-
+            var updatedServicio = await _repository.UpdateServicio(oServicio);
             return updatedServicio;
         }
-        public async Task DeleteServicio(int id)
+        public async Task<Servicios> DeleteServicio(int id)
         {
-            var servicio = await _repository.GetServicioById(id);
-            if (servicio != null)
+            Servicios oServicio = await _repository.GetServicioById(id);
+            if (oServicio != null)
             {
-                await _repository.DeleteServicio(servicio);
+                return await _repository.DeleteServicio(oServicio);
             }
+            return oServicio;
         }
     }
 }

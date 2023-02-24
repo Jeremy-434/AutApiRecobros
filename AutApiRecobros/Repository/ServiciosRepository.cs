@@ -34,10 +34,11 @@ namespace AutApiRecobros.Repository
             await _context.SaveChangesAsync();
             return servicio;
         }
-        public async Task DeleteServicio(Servicios servicio)
+        public async Task<Servicios> DeleteServicio(Servicios servicio)
         {
             _context.Servicios.Remove(servicio);
             await _context.SaveChangesAsync();
+            return servicio;
         }
     }
 }

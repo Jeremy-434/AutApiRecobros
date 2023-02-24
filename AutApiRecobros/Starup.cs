@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using AutApiRecobros.Models;
 using AutApiRecobros.Repository;
 using AutApiRecobros.Services;
@@ -14,7 +15,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ServiciosRepository>();
 builder.Services.AddScoped<ServiciosService>();
+builder.Services.AddScoped<AplicacionesRepository>();
+builder.Services.AddScoped<AplicacionesService>();
 builder.Services.AddDbContext<MyDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL")));
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 var misReglasCors = "ReglasCors";
 builder.Services.AddCors(options =>
@@ -29,11 +37,14 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors(misReglasCors);
 

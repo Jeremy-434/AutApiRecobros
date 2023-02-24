@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
+using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.VisualBasic;
 
 namespace AutApiRecobros.Models;
 
@@ -32,30 +36,28 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<Parametros> Parametros { get; set; }
 
     public virtual DbSet<Servicios> Servicios { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=22LAP5CG0525JCB;Initial Catalog=recobrosDB;Integrated Security=True;TrustServerCertificate=True");
-
+    {
+        //To protect potentially sensitive information in your connection string, you should move it out of source code.You can avoid scaffolding the connection string by using the Name = syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        //=> optionsBuilder.UseSqlServer("Data Source=22LAP5CG0525JCB;Initial Catalog=recobrosDB;Integrated Security=True;TrustServerCertificate=True");
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Aliados>(entity =>
         {
             entity.HasKey(e => e.IdAliado).HasName("PK__Aliados__CA34856324D93F99");
-
             entity.Property(e => e.Fecha).HasDefaultValueSql("(getdate())");
         });
-
         modelBuilder.Entity<Aplicaciones>(entity =>
         {
             entity.HasKey(e => e.IdAplicacion).HasName("PK__Aplicaci__D3D4F74ACBDF768E");
-
-            entity.HasOne(d => d.IdAliadoNavigation).WithMany(p => p.Aplicaciones)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_IdAliados");
-
-            entity.HasOne(d => d.IdServicioNavigation).WithMany(p => p.Aplicaciones)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+            entity.HasOne(d => d.IdAliadoNavigation)
+            .WithMany(p => p.Aplicaciones)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_IdAliados");
+            entity.HasOne(d => d.IdServicioNavigation)
+            .WithMany(p => p.Aplicaciones)
+            .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_IdServicio");
         });
 

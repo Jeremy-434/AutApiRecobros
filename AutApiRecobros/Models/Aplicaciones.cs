@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutApiRecobros.Models;
@@ -33,14 +34,15 @@ public partial class Aplicaciones
     [Column("id_aliado")]
     public int IdAliado { get; set; }
 
+    [JsonIgnore]
     [InverseProperty("IdAplicacionNavigation")]
     public virtual ICollection<Consolidado> Consolidados { get; } = new List<Consolidado>();
 
     [ForeignKey("IdAliado")]
     [InverseProperty("Aplicaciones")]
-    public virtual Aliados IdAliadoNavigation { get; set; } = null!;
+    public virtual Aliados? IdAliadoNavigation { get; set; } = null!;
 
     [ForeignKey("IdServicio")]
     [InverseProperty("Aplicaciones")]
-    public virtual Servicios IdServicioNavigation { get; set; } = null!;
+    public virtual Servicios? IdServicioNavigation { get; set; } = null!;
 }
