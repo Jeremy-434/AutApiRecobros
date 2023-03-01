@@ -34,6 +34,8 @@ namespace AutApiRecobros.Services
             oAplicacion.NombreAplicacion = aplicacion.NombreAplicacion ?? oAplicacion.NombreAplicacion;
             oAplicacion.Estado = aplicacion.Estado ?? oAplicacion.Estado;
             oAplicacion.NombreSegmento = aplicacion.NombreSegmento ?? oAplicacion.NombreSegmento;
+            oAplicacion.IdServicio = aplicacion.IdServicio;
+            oAplicacion.IdAliado = aplicacion.IdAliado;
 
             var updatedAplicacion = await _repository.UpdateAplicacion(oAplicacion);
             return updatedAplicacion;

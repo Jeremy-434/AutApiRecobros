@@ -39,10 +39,19 @@ namespace AutApiRecobros.Controllers
         }
         [HttpPut]
         [Route("editar")]
-        public IActionResult Update(Aplicaciones aplicacion)
+        public async Task<IActionResult> Update(Aplicaciones aplicacion)
         {
-            var updatedAplicacion = _service.UpdateAplicacion(aplicacion);
-            return StatusCode(StatusCodes.Status200OK, new { messaje = "UPDATE", response = updatedAplicacion.Result });
+            Aplicaciones oAplicacion = new();
+            try
+            {
+                Aplicaciones updatedAplicacion =  await _service.UpdateAplicacion(aplicacion);
+                oAplicacion = updatedAplicacion;
+                return StatusCode(StatusCodes.Status200OK, new { messaje = "UPDATE", response = updatedAplicacion });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { messaje = ex.Message, response = oAplicacion });
+            }
         }
         [HttpDelete]
         [Route("eliminar/{id:int}")]
