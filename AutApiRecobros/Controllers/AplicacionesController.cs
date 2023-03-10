@@ -18,39 +18,39 @@ namespace AutApiRecobros.Controllers
         }
         [HttpGet]
         [Route("listar/{id:int}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var aplicacion = _service.GetAplicacionById(id);
-            return StatusCode(StatusCodes.Status200OK, new { messaje = "OK", response = aplicacion.Result });
+            Aplicaciones aplicacion = await _service.GetAplicacionById(id);
+            return Ok(aplicacion);
         }
         [HttpGet]
         [Route("listar")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var aplicaciones = _service.GetAllAplicaciones();
-            return StatusCode(StatusCodes.Status200OK, new { messaje = "OK", response = aplicaciones.Result });
+            IEnumerable<Aplicaciones> aplicaciones = await _service.GetAllAplicaciones();
+            return Ok(aplicaciones);
         }
         [HttpPost]
         [Route("guardar")]
-        public IActionResult Create(Aplicaciones aplicacion)
+        public async Task<IActionResult> Create(Aplicaciones aplicacion)
         {
-            var createdAplicacion = _service.CreateAplicacion(aplicacion);
-            return StatusCode(StatusCodes.Status200OK, new { messaje = "CREATED", response = createdAplicacion.Result });
+            Aplicaciones createdAplicacion = await _service.CreateAplicacion(aplicacion);
+            return Ok(createdAplicacion);
         }
         [HttpPut]
         [Route("editar")]
         public async Task<IActionResult> Update(Aplicaciones aplicacion)
         {
-            Aplicaciones oAplicacion = new();
+            Aplicaciones oAplicacion;
             try
             {
                 Aplicaciones updatedAplicacion =  await _service.UpdateAplicacion(aplicacion);
                 oAplicacion = updatedAplicacion;
-                return StatusCode(StatusCodes.Status200OK, new { messaje = "UPDATE", response = updatedAplicacion });
+                return Ok(oAplicacion);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status200OK, new { messaje = ex.Message, response = oAplicacion });
+                return new ObjectResult("No se encontraron datos") { StatusCode = ex.HResult };
             }
         }
         [HttpDelete]
@@ -58,7 +58,7 @@ namespace AutApiRecobros.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Aplicaciones deletedAplicacion = await _service.DeleteAplicacion(id);
-            return StatusCode(StatusCodes.Status200OK, new { messaje = "DELETED", response = deletedAplicacion });
+            return Ok(deletedAplicacion);
 
         }
     }
