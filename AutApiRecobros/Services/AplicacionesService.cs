@@ -28,7 +28,7 @@ namespace AutApiRecobros.Services
             var oAplicacion = await _repository.GetAplicacionById(aplicacion.IdAplicacion);
             if (oAplicacion == null)
             {
-                throw new ArgumentException("Servicio not found");
+                throw new ArgumentException("Aplicacion not found");
             }
 
             oAplicacion.NombreAplicacion = aplicacion.NombreAplicacion ?? oAplicacion.NombreAplicacion;

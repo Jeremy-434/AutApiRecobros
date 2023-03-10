@@ -17,6 +17,8 @@ builder.Services.AddScoped<ServiciosRepository>();
 builder.Services.AddScoped<ServiciosService>();
 builder.Services.AddScoped<AplicacionesRepository>();
 builder.Services.AddScoped<AplicacionesService>();
+builder.Services.AddScoped<AliadosRepository>();
+builder.Services.AddScoped<AliadosService>();
 builder.Services.AddDbContext<MyDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL")));
 
 builder.Services.AddControllers().AddJsonOptions(options =>
