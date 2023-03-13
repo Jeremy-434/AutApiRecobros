@@ -27,7 +27,7 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Consolidado> Consolidados { get; set; }
 
-    public virtual DbSet<ControlArchivo> ControlArchivos { get; set; }
+    public virtual DbSet<ControlArchivos> ControlArchivos { get; set; }
 
     public virtual DbSet<HistorialConsolidado> HistorialConsolidados { get; set; }
 
@@ -91,7 +91,7 @@ public partial class MyDbContext : DbContext
                 .HasConstraintName("FKC_IdServicio");
         });
 
-        modelBuilder.Entity<ControlArchivo>(entity =>
+        modelBuilder.Entity<ControlArchivos>(entity =>
         {
             entity.HasKey(e => e.IdControlArchivo).HasName("PK__ControlA__C9A81DCF38D2E1A6");
 
