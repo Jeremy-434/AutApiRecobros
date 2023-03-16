@@ -17,12 +17,12 @@ namespace AutApiRecobros.Services
 
             if (fields.Length != 7)
             {
-                throw new ArgumentException("El archivo no cumple con los requisitos");
+                throw new ArgumentException("El archivo no tiene los 7 campos correspondientes");
             }
 
             try
             {
-                var filePath = "\\\\bjavaplivitd\\TmpFuentes\\Recobros\\" + file.FileName;
+                var filePath = "C:\\temp\\XXXX\\" + file.FileName;
                 
                 using var stream = System.IO.File.Create(filePath);
                 await file.CopyToAsync(stream);
