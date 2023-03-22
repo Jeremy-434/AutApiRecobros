@@ -98,6 +98,7 @@ public partial class MyDbContext : DbContext
             entity.HasOne(d => d.IdAliadoNavigation).WithMany(p => p.ControlArchivos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_IdAliado");
+            entity.Property(e => e.FechaServidor).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<HistorialConsolidado>(entity =>
