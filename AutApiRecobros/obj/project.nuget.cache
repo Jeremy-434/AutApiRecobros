@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vaWjV7zzWpJu/2PMgczLkcFfWc3PurbD9Zs4Hzxh4qULrQA9/agLm3LRhjQ8TImRixH8vnVHke21/X6quuu8cA==",
+  "dgSpecHash": "cLa4X9ogCH/9FjQwSE+SzLonBJcV62jyxYoCjDeGx4oTAq/n3tq6OqNUVSKaTF/rlewrRTU/LvV44csPpQUs0w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SoporteTI\\OneDrive - Indra\\Proyecto Recobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj",
+  "projectFilePath": "C:\\Users\\SoporteTI\\OneDrive\\Documentos\\Indra\\Net Core\\Copia AutApiRecobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SoporteTI\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\SoporteTI\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
