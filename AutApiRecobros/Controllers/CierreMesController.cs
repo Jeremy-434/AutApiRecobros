@@ -22,6 +22,7 @@ namespace AutApiRecobros.Controllers
             IEnumerable<CierreMes> cierreMesList = await _service.GetAllCierreMes();
             return Ok(cierreMesList);
         }
+<<<<<<< HEAD
         [HttpPost]
         [Route("guardar")]
         public async Task<IActionResult> Create(CierreMes cierreMes)
@@ -36,5 +37,7 @@ namespace AutApiRecobros.Controllers
             CierreMes deletedCierreMes = await _service.DeleteCierreMes(id);
             return Ok(deletedCierreMes);
         }
+=======
+>>>>>>> c03bf3ecf8e2b07deb0391da7705973e9f7f038a
     }
 }
