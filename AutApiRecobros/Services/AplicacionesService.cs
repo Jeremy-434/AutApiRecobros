@@ -25,10 +25,10 @@ namespace AutApiRecobros.Services
         }
         public async Task<Aplicaciones> UpdateAplicacion(Aplicaciones aplicacion)
         {
-            var oAplicacion = await _repository.GetAplicacionById(aplicacion.IdAplicacion);
+            Aplicaciones oAplicacion = await _repository.GetAplicacionById(aplicacion.IdAplicacion);
             if (oAplicacion == null)
             {
-                throw new ArgumentException("Servicio not found");
+                throw new ArgumentException("Aplicacion no encontrada");
             }
 
             oAplicacion.NombreAplicacion = aplicacion.NombreAplicacion ?? oAplicacion.NombreAplicacion;
@@ -37,7 +37,7 @@ namespace AutApiRecobros.Services
             oAplicacion.IdServicio = aplicacion.IdServicio;
             oAplicacion.IdAliado = aplicacion.IdAliado;
 
-            var updatedAplicacion = await _repository.UpdateAplicacion(oAplicacion);
+            Aplicaciones updatedAplicacion = await _repository.UpdateAplicacion(oAplicacion);
             return updatedAplicacion;
         }
         public async Task<Aplicaciones> DeleteAplicacion(int id)

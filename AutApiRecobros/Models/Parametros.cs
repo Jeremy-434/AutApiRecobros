@@ -18,7 +18,11 @@ public partial class Parametros
     public string RutaArchivosProcesar { get; set; } = null!;
 
     [Column("num_meses_eliminacion_historico")]
-    [StringLength(30)]
-    [Unicode(false)]
-    public string? NumMesesEliminacionHistorico { get; set; }
+    public int NumMesesEliminacionHistorico { get; set; }
+
+    [Column("num_columnas_archivo")]
+    public int NumColumnasArchivo { get; set; }
+
+    [Column("bytes_max_archivo")]
+    public int BytesMaxArchivo { get; set; }
 }

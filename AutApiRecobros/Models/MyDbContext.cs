@@ -27,7 +27,7 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Consolidado> Consolidados { get; set; }
 
-    public virtual DbSet<ControlArchivo> ControlArchivos { get; set; }
+    public virtual DbSet<ControlArchivos> ControlArchivos { get; set; }
 
     public virtual DbSet<HistorialConsolidado> HistorialConsolidados { get; set; }
 
@@ -36,6 +36,7 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<Parametros> Parametros { get; set; }
 
     public virtual DbSet<Servicios> Servicios { get; set; }
+    public virtual DbSet<CierreMes> CierreMes { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //To protect potentially sensitive information in your connection string, you should move it out of source code.You can avoid scaffolding the connection string by using the Name = syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -91,13 +92,14 @@ public partial class MyDbContext : DbContext
                 .HasConstraintName("FKC_IdServicio");
         });
 
-        modelBuilder.Entity<ControlArchivo>(entity =>
+        modelBuilder.Entity<ControlArchivos>(entity =>
         {
             entity.HasKey(e => e.IdControlArchivo).HasName("PK__ControlA__C9A81DCF38D2E1A6");
 
             entity.HasOne(d => d.IdAliadoNavigation).WithMany(p => p.ControlArchivos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_IdAliado");
+            entity.Property(e => e.FechaServidor).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<HistorialConsolidado>(entity =>
@@ -122,6 +124,13 @@ public partial class MyDbContext : DbContext
         modelBuilder.Entity<Servicios>(entity =>
         {
             entity.HasKey(e => e.IdServicio).HasName("PK__Servicio__6FD07FDC140ABD66");
+        });
+
+        modelBuilder.Entity<CierreMes>(entity =>
+        {
+            entity.HasKey(e => e.IdCierreMes).HasName("PK__CierreMe__39B7D44499C675EB");
+
+            entity.Property(e => e.FechaServidor).HasDefaultValueSql("(getdate())");
         });
 
         OnModelCreatingPartial(modelBuilder);

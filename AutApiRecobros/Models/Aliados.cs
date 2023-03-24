@@ -46,5 +46,5 @@ public partial class Aliados
 
     [JsonIgnore]
     [InverseProperty("IdAliadoNavigation")]
-    public virtual ICollection<ControlArchivo> ControlArchivos { get; } = new List<ControlArchivo>();
+    public virtual ICollection<ControlArchivos> ControlArchivos { get; } = new List<ControlArchivos>();
 }

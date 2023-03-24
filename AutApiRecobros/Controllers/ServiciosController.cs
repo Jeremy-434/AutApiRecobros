@@ -19,38 +19,38 @@ namespace AutApiRecobros.Controllers
 
         [HttpGet]
         [Route("listar/{id:int}")]
-        public IActionResult GetByid(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var servicio = _service.GetServicioById(id);
-            return StatusCode(StatusCodes.Status200OK, new { messaje = "OK", response = servicio.Result });
+            Servicios servicio = await _service.GetServicioById(id);
+            return Ok(servicio);
         }
         [HttpGet]
         [Route("listar")]
-        public IActionResult Get()
+        public async Task<IActionResult> GetAll()
         {
-            var servicio = _service.GetAllServicios();
-            return StatusCode(StatusCodes.Status200OK, new { message = "OK", response = servicio.Result });
+            IEnumerable<Servicios> servicio = await _service.GetAllServicios();
+            return Ok(servicio);
         }
         [HttpPost]
         [Route("guardar")]
-        public IActionResult Create(Servicios servicio)
+        public async Task<IActionResult> Create(Servicios servicio)
         {
-            var createdServicio = _service.CreateServicio(servicio);
-            return StatusCode(StatusCodes.Status200OK, new { message = "CREATED", response = createdServicio.Result });
+            Servicios createdServicio = await _service.CreateServicio(servicio);
+            return Ok(createdServicio);
         }
         [HttpPut]
         [Route("editar")]
-        public IActionResult Update(Servicios servicio)
+        public async Task<IActionResult> Update(Servicios servicio)
         {
-            var updatedServicio = _service.UpdateServicio(servicio);
-            return StatusCode(StatusCodes.Status200OK, new { message = "UPDATED", response = updatedServicio.Result });
+            Servicios updatedServicio = await _service.UpdateServicio(servicio);
+            return Ok(updatedServicio);
         }
         [HttpDelete]
         [Route("eliminar/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             Servicios deletedServicio = await _service.DeleteServicio(id);
-            return StatusCode(StatusCodes.Status200OK, new { message = "DELETED", response = deletedServicio });
+            return Ok(deletedServicio);
         }
     }
 }

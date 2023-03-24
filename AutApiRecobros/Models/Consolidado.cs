@@ -145,7 +145,7 @@ public partial class Consolidado
 
     [ForeignKey("IdControlArchivo")]
     [InverseProperty("Consolidados")]
-    public virtual ControlArchivo IdControlArchivoNavigation { get; set; } = null!;
+    public virtual ControlArchivos IdControlArchivoNavigation { get; set; } = null!;
 
     [ForeignKey("IdServicio")]
     [InverseProperty("Consolidados")]
