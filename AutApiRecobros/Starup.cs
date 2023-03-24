@@ -23,6 +23,9 @@ builder.Services.AddScoped<ControlArchivoRepository>();
 builder.Services.AddScoped<ControlArchivoService>();
 builder.Services.AddScoped<ArchivoService>();
 builder.Services.AddScoped<ParametrosRepository>();
+builder.Services.AddScoped<ParametrosService>();
+builder.Services.AddScoped<CierreMesRepository>();
+builder.Services.AddScoped<CierreMesService>();
 builder.Services.AddDbContext<MyDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL")));
 
 builder.Services.AddControllers().AddJsonOptions(options =>

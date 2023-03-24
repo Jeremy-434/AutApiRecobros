@@ -28,7 +28,7 @@ namespace AutApiRecobros.Services
 
             if (fields.Length != parametros.NumColumnasArchivo)
             {
-                throw new ArgumentException("El archivo no tiene los 7 campos correspondientes");
+                throw new ArgumentException("El archivo no tiene los "+parametros.NumColumnasArchivo+" campos correspondientes");
             }
 
             try

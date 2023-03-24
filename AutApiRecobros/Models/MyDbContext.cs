@@ -36,6 +36,7 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<Parametros> Parametros { get; set; }
 
     public virtual DbSet<Servicios> Servicios { get; set; }
+    public virtual DbSet<CierreMes> CierreMes { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //To protect potentially sensitive information in your connection string, you should move it out of source code.You can avoid scaffolding the connection string by using the Name = syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -123,6 +124,13 @@ public partial class MyDbContext : DbContext
         modelBuilder.Entity<Servicios>(entity =>
         {
             entity.HasKey(e => e.IdServicio).HasName("PK__Servicio__6FD07FDC140ABD66");
+        });
+
+        modelBuilder.Entity<CierreMes>(entity =>
+        {
+            entity.HasKey(e => e.IdCierreMes).HasName("PK__CierreMe__39B7D44499C675EB");
+
+            entity.Property(e => e.FechaServidor).HasDefaultValueSql("(getdate())");
         });
 
         OnModelCreatingPartial(modelBuilder);
