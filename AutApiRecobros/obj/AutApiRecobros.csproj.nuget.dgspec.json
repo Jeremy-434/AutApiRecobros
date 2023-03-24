@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SoporteTI\\OneDrive - Indra\\Proyecto Recobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj": {}
+    "C:\\Users\\SoporteTI\\OneDrive\\Documentos\\Indra\\Net Core\\Copia AutApiRecobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SoporteTI\\OneDrive - Indra\\Proyecto Recobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj": {
+    "C:\\Users\\SoporteTI\\OneDrive\\Documentos\\Indra\\Net Core\\Copia AutApiRecobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SoporteTI\\OneDrive - Indra\\Proyecto Recobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj",
+        "projectUniqueName": "C:\\Users\\SoporteTI\\OneDrive\\Documentos\\Indra\\Net Core\\Copia AutApiRecobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj",
         "projectName": "AutApiRecobros",
-        "projectPath": "C:\\Users\\SoporteTI\\OneDrive - Indra\\Proyecto Recobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj",
+        "projectPath": "C:\\Users\\SoporteTI\\OneDrive\\Documentos\\Indra\\Net Core\\Copia AutApiRecobros\\AutApiRecobros\\AutApiRecobros\\AutApiRecobros.csproj",
         "packagesPath": "C:\\Users\\SoporteTI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SoporteTI\\OneDrive - Indra\\Proyecto Recobros\\AutApiRecobros\\AutApiRecobros\\obj\\",
+        "outputPath": "C:\\Users\\SoporteTI\\OneDrive\\Documentos\\Indra\\Net Core\\Copia AutApiRecobros\\AutApiRecobros\\AutApiRecobros\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SoporteTI\\AppData\\Roaming\\NuGet\\NuGet.Config",
